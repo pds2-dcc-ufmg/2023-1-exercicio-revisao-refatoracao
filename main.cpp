@@ -1,60 +1,52 @@
 #include "Streaming.hpp"
-#include <iostream>
-#include <list>
-#include <string>
-#include <vector>
 
 int main()
-
 {
-Streaming ss;
-string t;
+    Streaming plataforma;
 
-while (cin >> t) {
-if (t == "Filme")
+    std::string nome, genero;
+    int ano, duracao, n_temp, total_ep;
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+    std::string input;
+    while (std::cin >> input) {
+    
+        //adiciona um filme ao catalogo
+        if (input == "Filme") {
+            std::cin >> genero >> ano >> duracao;
+            getline(std::cin, nome);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            Video *v;
+            v = new Video(nome, ano, genero, input, duracao, 0, 0);
+            if (50 <= duracao) {
+                plataforma.cadastrar_filme(v);
+            }
+        }
+        
+        //adiciona uma serie ao catalogo
+        else if (input == "Serie") {
+            std::cin >> genero >> ano >> n_temp >> total_ep;
+            getline(std::cin, nome);
+            Video *v;
+            v = new Video(nome, ano, genero, input, 0, n_temp, total_ep);
+            if (2 <= total_ep) {
+                plataforma.cadastrar_serie(v);
+            }
+        }
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+        //adiciona uma nota de usuario
+        else if (input == "Nota") {
+            int id, nota;
+            std::cin >> id >> nota;
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            if (nota <= 10) {
+                if (nota >= 0) {
+                    plataforma.avaliacao(id, nota);
+                }
+            }
+        }
+    }
+    
+    plataforma.print_catalogo();
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
-
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
-
-return 0;
+    return 0;
 }
