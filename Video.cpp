@@ -28,21 +28,21 @@ void Video::print_info(unsigned int id){
 
     if (_subtipo == "Filme") {
         std::cout << "Filme " << id << ":"
-                << _nome
-                << " (" << _ano << "), "
-                << _genero
-                << ", " << _filme_duracao << " min, "
-                << "nota: " << this->get_media_avaliacao() << std::endl;
+                  << _nome
+                  << " (" << _ano << "), "
+                  << _genero
+                  << ", " << _filme_duracao << " min, "
+                  << "nota: " << this->get_media_avaliacao() << std::endl;
     }
 
     if (_subtipo == "Serie") {
         std::cout << "Serie " << id << ":"
-                << _nome
-                << " (" << _ano << "), "
-                << _genero << ", "
-                << _n_temp << " temporadas, "
-                << _total_ep << " episodios, "
-                << "nota: " << this->get_media_avaliacao() << std::endl;
+                  << _nome
+                  << " (" << _ano << "), "
+                  << _genero << ", "
+                  << _n_temp << " temporadas, "
+                  << _total_ep << " episodios, "
+                  << "nota: " << this->get_media_avaliacao() << std::endl;
     }
     
 }
