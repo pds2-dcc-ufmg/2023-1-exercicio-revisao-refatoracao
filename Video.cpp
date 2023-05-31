@@ -1,46 +1,47 @@
 #include "Video.hpp"
 
-Video::Video(std::string nome, int ano, std::string genero, std::string subtipo, int filme_duracao, int n_temp, int total_ep) : nome(nome), ano(ano), genero(genero), subtipo(subtipo), filme_duracao(filme_duracao),n_temp(n_temp), total_ep(total_ep)
-    {
-    }
+Video::Video(std::string nome, std::string genero, std::string subtipo,
+             int ano, int filme_duracao, int n_temp, int total_ep) :
+            _nome(nome), _genero(genero), _subtipo(subtipo),
+            _ano(ano), _filme_duracao(filme_duracao), _n_temp(n_temp), _total_ep(total_ep) {}
 
 
 float Video::get_media_avaliacao() {
     float v = 0;
-    for (int n : avaliacoes)
-        v += n;
+    for (unsigned int n : _avaliacoes)
+        v += (float) n;
 
-    return v/avaliacoes.size();
+    return v/(float) _avaliacoes.size();
 }
 
 
-void Video::avaliar(int nota) {
-    avaliacoes.push_back(nota);
+void Video::avaliar(unsigned int nota) {
+    _avaliacoes.push_back(nota);
 }
 
 void Video::simples(){
-    for (int n : avaliacoes)
-    std::cout << n << std::endl;
+    for (unsigned int n : _avaliacoes)
+        std::cout << n << std::endl;
 }
 
-void Video::print_info(int id){
+void Video::print_info(unsigned int id){
 
-    if (subtipo == "Filme") {
+    if (_subtipo == "Filme") {
         std::cout << "Filme " << id << ":"
-                << nome
-                << " (" << ano << "), "
-                << genero
-                << ", " << filme_duracao << " min, "
+                << _nome
+                << " (" << _ano << "), "
+                << _genero
+                << ", " << _filme_duracao << " min, "
                 << "nota: " << this->get_media_avaliacao() << std::endl;
     }
 
-    if (subtipo == "Serie") {
+    if (_subtipo == "Serie") {
         std::cout << "Serie " << id << ":"
-                << nome
-                << " (" << ano << "), "
-                << genero << ", "
-                << n_temp << " temporadas, "
-                << total_ep << " episodios, "
+                << _nome
+                << " (" << _ano << "), "
+                << _genero << ", "
+                << _n_temp << " temporadas, "
+                << _total_ep << " episodios, "
                 << "nota: " << this->get_media_avaliacao() << std::endl;
     }
     

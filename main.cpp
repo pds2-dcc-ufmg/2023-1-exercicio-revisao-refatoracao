@@ -15,10 +15,10 @@ int main() {
             std::cin >> genero >> ano >> duracao;
             getline(std::cin, nome);
 
-            Video *v = new Video(nome, ano, genero, tipo, duracao, 0, 0);
+            Video *v = new Video(nome, genero, tipo, ano, duracao, 0, 0);
 
             if (duracao >= 50)
-                ss.cadastrar_filme(v);
+                ss.cadastrar(v);
 
         }
 
@@ -32,20 +32,20 @@ int main() {
             std::cin >> genero >> ano >> numero_temporadas >> tamanho_episodios;
             getline(std::cin, nome);
 
-            Video *v = new Video(nome, ano, genero, tipo, 0, numero_temporadas, tamanho_episodios);
+            Video *v = new Video(nome, genero, tipo, ano, 0, numero_temporadas, tamanho_episodios);
 
             if (2 <= tamanho_episodios)
-                ss.cadastrar_serie(v);
+                ss.cadastrar(v);
 
         }
 
 
         if (tipo == "Nota") {
-            int id, nota;
+            unsigned int id, nota;
 
             std::cin >> id >> nota;
 
-            if ((nota <= 10) && (nota >= 0)) {
+            if (nota <= 10) {
                 ss.avaliacao(id, nota);
             }
 

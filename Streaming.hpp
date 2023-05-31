@@ -10,17 +10,14 @@
 class Streaming { 
   private:
 
-    std::vector<Video*> catalogo;
+    std::vector<Video*> _catalogo;
 
   public:
 
-    void cadastrar_filme(Video *v);
+    void cadastrar(Video *v);
 
 
-    void cadastrar_serie(Video *v);
-
-
-    void avaliacao(int id, int nota);
+    void avaliacao(unsigned int id, unsigned int nota);
 
 
     void print_catalogo();

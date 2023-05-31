@@ -1,29 +1,24 @@
 #include "Streaming.hpp"
 
-void Streaming::cadastrar_filme(Video *v){
-    catalogo.push_back(v);
+void Streaming::cadastrar(Video *v){
+    _catalogo.push_back(v);
 }
 
 
-void Streaming::cadastrar_serie(Video *v){
-    catalogo.push_back(v);
-}
-
-
-void Streaming::avaliacao(int id, int nota) {
-    catalogo[id - 1]->avaliar(nota);
+void Streaming::avaliacao(unsigned int id, unsigned int nota) {
+    _catalogo[id - 1]->avaliar(nota);
 }
 
 
 void Streaming::print_catalogo() {
-    if (catalogo.empty()) {
+    if (_catalogo.empty()) {
         std::cout << "Sem video cadastrado!" << std::endl;
         return;
     }
 
     std::cout << "Catalogo Streaming:" << std::endl;
-    int i = 1;
-    for (Video* v : catalogo) {
+    unsigned int i = 1;
+    for (Video* v : _catalogo) {
         v->print_info(i);
         i++;
     }
