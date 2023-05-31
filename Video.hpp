@@ -1,13 +1,14 @@
 #ifndef VIDEO_HPP
 #define VIDEO_HPP
 
+
 #include <iostream>
 #include <list>
 
 
 class Video {
   private:
-  
+
     int ano, filme_duracao, n_temp, total_ep;
     std::string nome, genero, subtipo;
     std::list<int> avaliacoes;
@@ -24,6 +25,8 @@ class Video {
 
 
     void print_info(int id);
+
+    void simples();
   
 };
 

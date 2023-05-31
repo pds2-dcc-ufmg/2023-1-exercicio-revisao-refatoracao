@@ -16,15 +16,15 @@ void Streaming::avaliacao(int id, int nota) {
 
 
 void Streaming::print_catalogo() {
-    if (catalogo.size()==0)
+    if (catalogo.empty()) {
         std::cout << "Sem video cadastrado!" << std::endl;
-    else {
-        std::cout << "Catalogo Streaming:";
-        std::cout << std::endl;
-        int i = 0;;
-        for (std::vector<Video*>::iterator it = catalogo.begin(); it != catalogo.end(); it++) {
-            (*it)->print_info(i + 1);
-            i++;
-        }
+        return;
+    }
+
+    std::cout << "Catalogo Streaming:" << std::endl;
+    int i = 1;
+    for (Video* v : catalogo) {
+        v->print_info(i);
+        i++;
     }
 }

@@ -41,14 +41,18 @@ int main() {
 
 
         if (tipo == "Nota") {
-            int id, nome;
+            int id, nota;
 
-            std::cin >> id >> nome;
+            std::cin >> id >> nota;
 
-            if ((nome <= 10) && (nome >= 0)) {
-                ss.avaliacao(id, nome);
+            if ((nota <= 10) && (nota >= 0)) {
+                ss.avaliacao(id, nota);
             }
 
+        }
+
+        if (tipo == "exit"){
+            break;
         }
 
     }

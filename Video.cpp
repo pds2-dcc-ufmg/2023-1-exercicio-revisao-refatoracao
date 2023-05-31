@@ -7,7 +7,9 @@ Video::Video(std::string nome, int ano, std::string genero, std::string subtipo,
 
 float Video::get_media_avaliacao() {
     float v = 0;
-    for (auto n : avaliacoes)v += n;
+    for (int n : avaliacoes)
+        v += n;
+
     return v/avaliacoes.size();
 }
 
@@ -16,26 +18,30 @@ void Video::avaliar(int nota) {
     avaliacoes.push_back(nota);
 }
 
+void Video::simples(){
+    for (int n : avaliacoes)
+    std::cout << n << std::endl;
+}
 
 void Video::print_info(int id){
 
     if (subtipo == "Filme") {
-        //cout << "Filme " << id << ":";
-        //cout << nome;
-        //cout << " (" << ano << "), ";
-        //cout << genero;
-        //cout << ", " << filme_duracao << " min, ";
-        //cout << "nota: " << get_media_avaliacao() << std::endl;
+        std::cout << "Filme " << id << ":"
+                << nome
+                << " (" << ano << "), "
+                << genero
+                << ", " << filme_duracao << " min, "
+                << "nota: " << this->get_media_avaliacao() << std::endl;
     }
 
     if (subtipo == "Serie") {
-        //cout << "Serie " << id << ":";
-        //cout << nome;
-        //cout << " (" << ano << "), ";
-        //cout << genero << ", ";
-        //cout << n_temp << " temporadas, ";
-        //cout << total_ep << " episodios, ";
-        //cout << "nota: " << get_media_avaliacao() << std::endl;
+        std::cout << "Serie " << id << ":"
+                << nome
+                << " (" << ano << "), "
+                << genero << ", "
+                << n_temp << " temporadas, "
+                << total_ep << " episodios, "
+                << "nota: " << this->get_media_avaliacao() << std::endl;
     }
     
 }
