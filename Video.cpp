@@ -20,12 +20,6 @@ void Video::avaliar(unsigned int nota) {
 }
 
 
-void Video::simples(){
-    for (unsigned int n : _avaliacoes)
-        std::cout << n << std::endl;
-}
-
-
 void Video::print_info(unsigned int id){
 
     if (_subtipo == "Filme") {
