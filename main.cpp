@@ -15,10 +15,10 @@ int main()
             std::cin >> genero >> ano >> duracao;
             getline(std::cin, nome);
 
-            Video *v;
-            v = new Video(nome, ano, genero, input, duracao, 0, 0);
+            Video *video;
+            video = new Video(nome, ano, genero, input, duracao, 0, 0);
             if (50 <= duracao) {
-                plataforma.cadastrar_filme(v);
+                plataforma.cadastrar_filme(video);
             }
         }
         
@@ -26,10 +26,12 @@ int main()
         else if (input == "Serie") {
             std::cin >> genero >> ano >> n_temp >> total_ep;
             getline(std::cin, nome);
-            Video *v;
-            v = new Video(nome, ano, genero, input, 0, n_temp, total_ep);
+            Video *video;
+            video = new Video(nome, ano, genero, input, 0, n_temp, total_ep);
+            
+            //uma serie precisa ter pelo menos 2 episodios
             if (2 <= total_ep) {
-                plataforma.cadastrar_serie(v);
+                plataforma.cadastrar_serie(video);
             }
         }
 

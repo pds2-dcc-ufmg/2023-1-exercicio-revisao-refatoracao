@@ -6,9 +6,9 @@ class Streaming {
     std::vector<Video*> catalogo;
   
   public:
-    void cadastrar_filme(Video *v);
+    void cadastrar_filme(Video *video);
 
-    void cadastrar_serie(Video *v);
+    void cadastrar_serie(Video *video);
 
     void avaliacao(int id, int nota);
 

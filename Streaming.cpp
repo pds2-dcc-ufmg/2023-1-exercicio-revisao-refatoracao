@@ -1,11 +1,11 @@
 #include "Streaming.hpp"
 
-void Streaming::cadastrar_filme(Video *v) {
-  catalogo.push_back(v);
+void Streaming::cadastrar_filme(Video *video) {
+  catalogo.push_back(video);
 }
 
-void Streaming::cadastrar_serie(Video *v) {
-  catalogo.push_back(v);
+void Streaming::cadastrar_serie(Video *video) {
+  catalogo.push_back(video);
 }
 
 void Streaming::avaliacao(int id, int nota) {

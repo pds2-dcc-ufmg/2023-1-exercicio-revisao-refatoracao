@@ -15,5 +15,5 @@ Você deve criar um **Fork** desse repositório, fazer as alterações que julga
 
 No **título** do seu Pull Request, informe o valor **MD5** obtido a partir da sua **matrícula**. Você pode gerar esse valor a partir de diferentes sites, um exemplo está [aqui](http://www.md5.cz/). Lembre-se de também informar seus dados no forms disponibilizado no Moodle. Na **descrição** faça uma **lista/análise detalhada** das **soluções** que você utilizou. Submissões que não seguirem essas instruções não serão avaliadas.
 
-Lembre-se de analisar aspectos como: nomenclatura, formatação, organização, modularização, comentários, aplicação correta dos conceitos de POO, entre outros.
+Lembre-se de analisar aspectos como: nomenclatura, formatação, organização, modularização, comentários, aplicação correta dos conceitos de OO, entre outros.
 Dica: Utilize o catálogo para pensar em possíveis sugestões de refatoração (https://refactoring.com/catalog/).

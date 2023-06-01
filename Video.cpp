@@ -14,22 +14,26 @@ void Video::avaliar(int nota) {
 void Video::print_info(int id) {
   if (this->subtipo == "Filme") 
   {
-    std::cout << "Filme " << id << ":";
-    std::cout << this->nome;
-    std::cout << " (" << ano << "), ";
-    std::cout << this->genero;
-    std::cout << ", " << this->filme_duracao << " min, ";
-    std::cout << "nota: " << get_media_avaliacao() << std::endl;
+    std::cout
+      << "Filme " << id << ":"
+      << this->nome
+      << " (" << ano << "), "
+      << this->genero
+      << ", " << this->filme_duracao << " min, "
+      << "nota: " << get_media_avaliacao()
+      << std::endl;
   }
 
   else if (this->subtipo == "Serie")
   {
-    std::cout << "Serie " << id << ":";
-    std::cout << this->nome;
-    std::cout << " (" << ano << "), ";
-    std::cout << this->genero << ", ";
-    std::cout << this->n_temp << " temporadas, ";
-    std::cout << this->total_ep << " episodios, ";
-    std::cout << "nota: " << get_media_avaliacao() << std::endl;
+    std::cout
+      << "Serie " << id << ":"
+      << this->nome
+      << " (" << ano << "), "
+      << this->genero << ", "
+      << this->n_temp << " temporadas, "
+      << this->total_ep << " episodios, "
+      << "nota: " << get_media_avaliacao()
+      << std::endl;
   }
 };
