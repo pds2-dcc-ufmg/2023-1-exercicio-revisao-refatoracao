@@ -50,11 +50,7 @@ int main() {
             }
 
         }
-
-        if (tipo == "exit"){
-            break;
-        }
-
+        
     }
 
     ss.print_catalogo();
