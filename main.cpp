@@ -1,7 +1,7 @@
 #include "Streaming.hpp"
 
 int main() {
-    Streaming ss;
+    Streaming streaming;
     std::string tipo;
 
     while (std::cin >> tipo) {
@@ -19,7 +19,7 @@ int main() {
             Video *v = new Video(nome, genero, tipo, ano, duracao, 0, 0);
 
             if (duracao >= 50)
-                ss.cadastrar(v);
+                streaming.cadastrar(v);
 
         }
 
@@ -37,7 +37,7 @@ int main() {
             Video *v = new Video(nome, genero, tipo, ano, 0, numero_temporadas, tamanho_episodios);
 
             if (2 <= tamanho_episodios)
-                ss.cadastrar(v);
+                streaming.cadastrar(v);
 
         }
 
@@ -49,14 +49,14 @@ int main() {
             std::cin >> id >> nota;
 
             if (nota <= 10) {
-                ss.avaliacao(id, nota);
+                streaming.avaliacao(id, nota);
             }
 
         }
 
     }
 
-    ss.print_catalogo();
+    streaming.print_catalogo();
 
     return 0;
 }
