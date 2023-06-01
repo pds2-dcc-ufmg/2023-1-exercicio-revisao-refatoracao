@@ -4,57 +4,62 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 int main()
-
 {
-Streaming ss;
-string t;
+    Streaming streaming;
+    string tipo, nome, genero;
+    int ano, duracao, numero_temporada, numero_episodio, id, nota;
+    const int numero_min_ep = 2;
+    const int duracao_min = 50;
+    const int nota_min = 0;
+    const int nota_max = 10;
 
-while (cin >> t) {
-if (t == "Filme")
+    while (cin >> tipo) 
+    {
+        if (tipo == "Filme")
+        {
+            numero_temporada = 0;
+            numero_episodio = 0;
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            cin >> genero >> ano >> duracao;
+            getline(cin, nome);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            Video *filme;
+            filme = new Video(nome, ano, genero, tipo, duracao, numero_temporada, numero_episodio);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            if (duracao_min <= duracao)
+            {
+               streaming.cadastrar_filme(filme);
+            }
+        }
+        if (tipo == "Serie") 
+        {
+            duracao = 0;
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            cin >> genero >> ano >> numero_temporada >> numero_episodio;
+            getline(cin, nome);
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            Video *serie;
+            serie = new Video(nome, ano, genero, tipo, duracao, numero_temporada, numero_episodio);
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+            if (numero_min_ep <= numero_episodio) 
+            {
+                streaming.cadastrar_serie(serie);
+            }
+        }
+        if (tipo == "Nota") 
+        {
+            cin >> id >> nota;
 
-return 0;
+            if ((nota <= nota_max) && (nota >= nota_min)) 
+            {
+                streaming.avaliacao(id, nota);
+            }
+        }
+    }
+
+    streaming.print_catalogo();
+    return 0;
 }
