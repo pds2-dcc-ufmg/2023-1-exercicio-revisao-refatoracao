@@ -54,9 +54,6 @@ int main() {
 
         }
 
-        if (tipo == "exit")
-            break;
-
     }
 
     streaming.print_catalogo();
