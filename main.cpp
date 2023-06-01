@@ -6,6 +6,7 @@ int main() {
 
     while (std::cin >> tipo) {
 
+        // Cadstrar um filme
         if (tipo == "Filme") {
 
             std::string nome;
@@ -23,6 +24,7 @@ int main() {
         }
 
 
+        // Cadastrar uma série
         if (tipo == "Serie") {
 
             std::string nome;
@@ -40,6 +42,7 @@ int main() {
         }
 
 
+        // Avaliar um item do ctálogo
         if (tipo == "Nota") {
             unsigned int id, nota;
 
@@ -50,7 +53,7 @@ int main() {
             }
 
         }
-        
+
     }
 
     ss.print_catalogo();

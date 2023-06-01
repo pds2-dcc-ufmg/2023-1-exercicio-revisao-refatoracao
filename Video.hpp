@@ -15,7 +15,8 @@ class Video {
 
   public:
 
-    Video(std::string nome, std::string genero, std::string subtipo, int ano, int filme_duracao, int n_temp, int total_ep);
+    Video(std::string nome, std::string genero,std::string subtipo,
+          int ano,int filme_duracao, int n_temp, int total_ep);
     
     
     float get_media_avaliacao();
@@ -30,5 +31,6 @@ class Video {
     void simples();
   
 };
+
 
 #endif
