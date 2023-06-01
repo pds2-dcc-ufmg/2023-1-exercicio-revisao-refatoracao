@@ -7,25 +7,26 @@
 
 
 class Video {
-  private:
+  protected:
 
     std::list<unsigned int> _avaliacoes;
-    std::string _nome, _genero, _subtipo;
-    int _ano, _filme_duracao, _n_temp, _total_ep;
+    std::string _nome, _genero;
+    int _ano;
 
   public:
 
-    Video(std::string nome, std::string genero,std::string subtipo,
-          int ano,int filme_duracao, int n_temp, int total_ep);
+    Video(std::string nome, std::string genero, int ano);
+
+    virtual ~Video();
     
     
-    float get_media_avaliacao();
+    virtual float get_media_avaliacao() = 0;
 
 
-    void avaliar(unsigned int nota);
+    virtual void avaliar(unsigned int nota) = 0;
 
 
-    void print_info(unsigned int id);
+    virtual void print_info(unsigned int id) = 0;
   
 };
 

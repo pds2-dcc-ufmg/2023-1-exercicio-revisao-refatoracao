@@ -1,0 +1,14 @@
+Modificações
+
+Formatação:
+
+-Indentação -> O código foi todo indentado para que se possa distinguir e separar os blocos de comandos cada um em seu espaço de indentação ('\t').
+
+-Espaçamento -> Foi adicionado espaçamento entre as funções, includes, defines, classes (2 linhas de separação) e blocos de comandos (1 linha), também no intuito de separar e facilitar a vizualização e dinamizar a leitura.
+
+-Declarações -> Em declarações de variáveis mais complexas, as declarações foram feitas linha por linha para evitar confusão e erro de leitura.
+
+
+Nomenclatura:
+
+-

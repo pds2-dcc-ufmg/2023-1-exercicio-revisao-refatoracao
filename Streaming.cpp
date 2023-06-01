@@ -1,4 +1,8 @@
+#define id_para_vector(id) id-1
+
+
 #include "Streaming.hpp"
+
 
 void Streaming::cadastrar(Video *v){
     _catalogo.push_back(v);
@@ -6,7 +10,7 @@ void Streaming::cadastrar(Video *v){
 
 
 void Streaming::avaliacao(unsigned int id, unsigned int nota) {
-    _catalogo[id - 1]->avaliar(nota);
+    _catalogo[id_para_vector(id)]->avaliar(nota);
 }
 
 

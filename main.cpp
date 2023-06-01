@@ -16,7 +16,7 @@ int main() {
             std::cin >> genero >> ano >> duracao;
             getline(std::cin, nome);
 
-            Video *v = new Video(nome, genero, tipo, ano, duracao, 0, 0);
+            Video* v = new Filme(nome, genero, ano, duracao);
 
             if (duracao >= 50)
                 streaming.cadastrar(v);
@@ -34,7 +34,7 @@ int main() {
             std::cin >> genero >> ano >> numero_temporadas >> tamanho_episodios;
             getline(std::cin, nome);
 
-            Video *v = new Video(nome, genero, tipo, ano, 0, numero_temporadas, tamanho_episodios);
+            Video *v = new Serie(nome, genero, ano, numero_temporadas, tamanho_episodios);
 
             if (2 <= tamanho_episodios)
                 streaming.cadastrar(v);
@@ -53,6 +53,9 @@ int main() {
             }
 
         }
+
+        if (tipo == "exit")
+            break;
 
     }
 

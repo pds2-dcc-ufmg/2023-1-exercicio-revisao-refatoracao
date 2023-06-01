@@ -2,9 +2,12 @@
 #define STREAMING_HPP
 
 
-#include <vector>
-
 #include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
+
+
+#include <vector>
 
 
 class Streaming { 
