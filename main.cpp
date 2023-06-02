@@ -31,10 +31,10 @@ int main()
 
             if (duracao_min <= duracao)
             {
-               streaming.cadastrar_filme(filme);
+               streaming.cadastrar_video(filme);
             }
         }
-        if (tipo == "Serie") 
+        else if (tipo == "Serie") 
         {
             duracao = 0;
 
@@ -46,10 +46,10 @@ int main()
 
             if (numero_min_ep <= numero_episodio) 
             {
-                streaming.cadastrar_serie(serie);
+                streaming.cadastrar_video(serie);
             }
         }
-        if (tipo == "Nota") 
+        else if (tipo == "Nota") 
         {
             cin >> id >> nota;
 

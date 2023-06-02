@@ -1,17 +1,17 @@
+#ifndef STREAMING_HPP
+#define STREAMING_HPP
 #include <string>
 #include <vector>
 #include "Video.hpp"
 
-using namespace std;
-
 class Streaming 
 { 
   private:
-    vector<Video*> catalogo;
-
+    std::vector<Video*> catalogo;
   public:
-    void cadastrar_filme(Video *v);
-    void cadastrar_serie(Video *v);
+    void cadastrar_video(Video *video);
     void avaliacao(int id, int nota);
     void print_catalogo();
 };
+
+#endif

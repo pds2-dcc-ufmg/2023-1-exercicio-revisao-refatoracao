@@ -1,13 +1,8 @@
 #include "Streaming.hpp"
 
-void Streaming::cadastrar_filme(Video *v)
+void Streaming::cadastrar_video(Video *video)
 {
-    catalogo.push_back(v);
-}
-
-void Streaming::cadastrar_serie(Video *v)
-{
-    catalogo.push_back(v);
+    catalogo.push_back(video);
 }
 
 void Streaming::avaliacao(int id, int nota) 
@@ -24,12 +19,12 @@ void Streaming::print_catalogo()
     else 
     {
         std::cout << "Catalogo Streaming:" << std::endl;
-        
-        int i = 0;
+
+        int indice = 0;
         for (vector<Video*>::iterator it = catalogo.begin(); it != catalogo.end(); it++) 
         {
-            (*it)->print_info(i + 1);
-            i++;
+            (*it)->print_info(indice + 1);
+            indice++;
         }
     }
 }

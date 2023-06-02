@@ -2,9 +2,9 @@
 
 float Video::get_media_avaliacao() 
 {
-    float v = 0;
-    for (auto n : this->avaliacoes)v += n;
-    return v/this->avaliacoes.size();
+    float soma_notas = 0;
+    for (auto nota : this->avaliacoes)soma_notas += nota;
+    return soma_notas/this->avaliacoes.size();
 }
 
 void Video::avaliar(int nota) 
@@ -19,8 +19,8 @@ void Video::print_info(int id)
         std::cout << "Filme " << id << ":"
         << nome
         << " (" << ano << "), "
-        << genero
-        << ", " << filme_duracao << " min, "
+        << genero << ", " 
+        << filme_duracao << " min, "
         << "nota: " << get_media_avaliacao() 
         << std::endl;
     }
@@ -30,8 +30,8 @@ void Video::print_info(int id)
         << nome
         << " (" << ano << "), "
         << genero << ", "
-        << n_temp << " temporadas, "
-        << total_ep << " episodios, "
+        << numero_temporada << " temporadas, "
+        << numero_episodio << " episodios, "
         << "nota: " << get_media_avaliacao()
         << std::endl;
     }
