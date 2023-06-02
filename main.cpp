@@ -1,60 +1,62 @@
 #include "Streaming.hpp"
-#include <iostream>
-#include <list>
-#include <string>
-#include <vector>
 
-int main()
+int main() {
+    Streaming streaming;
+    std::string tipo;
 
-{
-Streaming ss;
-string t;
+    while (std::cin >> tipo) {
 
-while (cin >> t) {
-if (t == "Filme")
+        // Cadstrar um filme
+        if (tipo == "Filme") {
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            std::string nome;
+            std::string genero;
+            int ano, duracao;
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            std::cin >> genero >> ano >> duracao;
+            getline(std::cin, nome);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            Video* v = new Filme(nome, genero, ano, duracao);
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            if (duracao >= 50)
+                streaming.cadastrar(v);
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+        }
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
 
-return 0;
+        // Cadastrar uma série
+        if (tipo == "Serie") {
+
+            std::string nome;
+            std::string genero;
+            int ano, numero_temporadas, tamanho_episodios;
+
+            std::cin >> genero >> ano >> numero_temporadas >> tamanho_episodios;
+            getline(std::cin, nome);
+
+            Video *v = new Serie(nome, genero, ano, numero_temporadas, tamanho_episodios);
+
+            if (2 <= tamanho_episodios)
+                streaming.cadastrar(v);
+
+        }
+
+
+        // Avaliar um item do ctálogo
+        if (tipo == "Nota") {
+            unsigned int id, nota;
+
+            std::cin >> id >> nota;
+
+            if (nota <= 10) {
+                streaming.avaliacao(id, nota);
+            }
+
+        }
+
+    }
+
+    streaming.print_catalogo();
+
+    return 0;
 }

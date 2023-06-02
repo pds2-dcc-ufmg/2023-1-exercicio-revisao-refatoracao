@@ -1,0 +1,48 @@
+Modificações
+
+Formatação:
+
+-Indentação -> O código foi todo indentado para que se possa distinguir e separar os blocos de comandos cada um em seu espaço de indentação ('\t').
+
+-Espaçamento -> Foi adicionado espaçamento entre as funções, includes, defines, classes (2 linhas de separação) e blocos de comandos (1 linha), também no intuito de separar e facilitar a vizualização e dinamizar a leitura.
+
+-Declarações -> Em declarações de variáveis mais complexas, as declarações foram feitas linha por linha para evitar confusão e erro de leitura.
+
+
+Nomenclatura:
+
+-Variáveis -> As variáveis receberam o nome completo (sem abreviações) do que elas representam ao longo do programa, isso evita levar os nomes abrevidos para o lado imaginativo e mantém o código simples e concreto.
+
+-Atributos -> Os atributos privados e protegidos das classes receberam um undescore ("_") na frente do nome para informar que eles não estão disponíveis para qualquer classe.
+
+
+Modularização:
+
+-Arquivos HPP -> Para melhor organização, o código foi dividido em arquivos ".hpp" e ".cpp" para diferenciar a declaração do contrato (HPP) do cumprimento do contrarto em si (CPP), essa prática além de organizar melhor o programa, ela possibilita a fácil implementação e melhoria do código futuramente, visto que o arquivo HPP não precisa ser modificado, apenas os arquivos CPP.
+
+-Evitar includes duplicados -> Com o "#ifndef" seguido do "#defne" é possível fazer a verificação da implementação desse arquivo e impedir que ele seja implementado mais de uma vez por causa das múltiplas chamadas.
+
+
+Conceitos de OO:
+
+-Herança -> A utilização de subclasses (Filme e Serie) originadas da classe video nos garante menos repetição de código e pouco desperdício, visto Séries e filmes não compartilham 100% de seu atributos, mas possuem muitos métodos em comum. Mas, a utilização de herança tám gera um tipo de modularização e separa o códiho em partes mais fáceis de manipular.
+
+
+Inclusão de arquivos:
+
+-Redundância excessiva -> Entendendo que algumas bibliotecas já foram incluidas certos arquivos, não é necessário incluí-las novamente em outros arquivos (Ex: #include <iostream> no mai.cpp e também em filme.cpp), desque que um arquivo já contenha essas bibliotecas, basta incluir este arquivo que todas as bibliotecas inclusas nele serão incluídas no arquivo que está chamando.
+
+-using namespace -> Essa ação até pode facilitar na hora da escrita, porém ela pode dificaultar a leitura além de trazer classes, funções e outras coisas que não serão utilizadas no código mas foram implementadas na inclusão de todo o namespace std.
+
+
+Variáveis:
+
+-Tipos primitivos - As variáveis que armazenavam o id ou notas  foram trocadas de "int" para "unsigned int". Essa permite capturar excessões mais facilmente além de diminuir a quantidade de comparações para tratamento de entrada visto que não é necessário especificar que o as variáveis de id e de nota deverão ter valores negativos. E por cima disso tudo, as variáveis retornadas pelos vectors são, geralmente, "unsigned int", então nós também evitamos a substituição forçada de um tipo primitivo (int) para outro (unsigned int) forçadamente.
+
+
+Outros:
+
+-Comentários -> Considerando que este é um código pequeno e todos os métodos e variáveis descrevem bem as ações que são responsáveis, os comentários são pouco necessários. Mas, para não deixar de utilizá-los deixei comentários no arquivo main para identificar as três ações possíveis inicialmente.
+
+-Números mágicos -> Para evitar a utilização de números mágicos (no caso desse código a transformaçãode um id que começa do 1 para um id que começa do 0) foi unplementado a definição de uma função que retorna id menos uma unidade (#define id_para_vector(id) id-1). 
+
