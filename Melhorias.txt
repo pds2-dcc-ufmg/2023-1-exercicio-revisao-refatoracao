@@ -39,3 +39,10 @@ Variáveis:
 
 -Tipos primitivos - As variáveis que armazenavam o id ou notas  foram trocadas de "int" para "unsigned int". Essa permite capturar excessões mais facilmente além de diminuir a quantidade de comparações para tratamento de entrada visto que não é necessário especificar que o as variáveis de id e de nota deverão ter valores negativos. E por cima disso tudo, as variáveis retornadas pelos vectors são, geralmente, "unsigned int", então nós também evitamos a substituição forçada de um tipo primitivo (int) para outro (unsigned int) forçadamente.
 
+
+Outros:
+
+-Comentários -> Considerando que este é um código pequeno e todos os métodos e variáveis descrevem bem as ações que são responsáveis, os comentários são pouco necessários. Mas, para não deixar de utilizá-los deixei comentários no arquivo main para identificar as três ações possíveis inicialmente.
+
+-Números mágicos -> Para evitar a utilização de números mágicos (no caso desse código a transformaçãode um id que começa do 1 para um id que começa do 0) foi unplementado a definição de uma função que retorna id menos uma unidade (#define id_para_vector(id) id-1). 
+
