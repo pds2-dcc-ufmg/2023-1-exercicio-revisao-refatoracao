@@ -6,20 +6,20 @@
 
 using namespace std;
 
-int main(){
+int main() {
 	Streaming streaming;
 	string tipo;
 
 	while (cin >> tipo) {
-		if (tipo == "Filme"){
+		if (tipo == "Filme") {
 			string nome, genero;
-			int n_temp = 0, total_ep = 0, ano, duracao;
+			int ano, duracao;
 			cin >> genero >> ano >> duracao;
 			getline(cin, nome);
 
-			Video* v = new Video(nome, ano, genero, tipo, duracao, n_temp, total_ep);
-			if (duracao >= 50){
-				streaming.cadastrar_filme(v);
+			Filme* f = new Filme(nome, ano, genero, duracao);
+			if (duracao >= 50) {
+				streaming.cadastrar_filme(f);
 			}
 			else {
 				cout << "Duração inválida" << endl;
@@ -28,13 +28,13 @@ int main(){
 
 		else if (tipo == "Serie") {
 			string nome, genero;
-			int ano, n_temp, total_ep, filme_duracao = 0;
+			int ano, n_temp, total_ep;
 			cin >> genero >> ano >> n_temp >> total_ep;
 			getline(cin, nome);
-			Video* v = new Video(nome, ano, genero, tipo, filme_duracao, n_temp, total_ep);
+			Serie* s = new Serie(nome, ano, genero, n_temp, total_ep);
 
 			if (total_ep >= 2) {
-				streaming.cadastrar_serie(v);
+				streaming.cadastrar_serie(s);
 			}
 			else {
 				cout << "Número de episódios insuficiente" << endl;
@@ -52,6 +52,10 @@ int main(){
 
 		else if (tipo == "Mostrar") {
 			streaming.print_catalogo();
+		}
+
+		else {
+			cout << "Tipo inválido" << endl;
 		}
 	}
 	return 0;
