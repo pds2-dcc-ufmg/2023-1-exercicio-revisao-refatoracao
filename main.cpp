@@ -1,60 +1,54 @@
-#include "Streaming.hpp"
 #include <iostream>
-#include <list>
 #include <string>
-#include <vector>
+#include <cassert>
+#include "Video.hpp"
+#include "Streaming.hpp"
 
 int main()
-
 {
-Streaming ss;
-string t;
+    Streaming streaming;
+    std::string tipo;
 
-while (cin >> t) {
-if (t == "Filme")
+    while (std::cin >> tipo)
+    {
+        if (tipo == "Filme")
+        {
+            std::string nome, genero;
+            int ano, duracao;
+            std::cin >> genero >> ano >> duracao;
+            std::cin.ignore();
+            std::getline(std::cin, nome);
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            assert(duracao >= 50 && "Duração inválida para o filme.");
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            Video* v = new Video(nome, ano, genero, tipo, duracao, 0, 0);
+            streaming.cadastrar_video(v);
+        }
+        else if (tipo == "Serie")
+        {
+            std::string nome, genero;
+            int ano, num_temporadas, num_episodios;
+            std::cin >> genero >> ano >> num_temporadas >> num_episodios;
+            std::cin.ignore();
+            std::getline(std::cin, nome);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            assert(num_episodios >= 2 && "Número de episódios inválido para a série.");
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            Video* v = new Video(nome, ano, genero, tipo, 0, num_temporadas, num_episodios);
+            streaming.cadastrar_video(v);
+        }
+        else if (tipo == "Nota")
+        {
+            int id, nota;
+            std::cin >> id >> nota;
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            assert(nota >= 0 && nota <= 10 && "Nota inválida.");
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+            streaming.avaliar_video(id, nota);
+        }
+    }
 
-return 0;
+    streaming.imprimir_catalogo();
+
+    return 0;
 }
