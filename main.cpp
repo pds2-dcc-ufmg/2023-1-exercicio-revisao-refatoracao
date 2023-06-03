@@ -4,57 +4,55 @@
 #include <string>
 #include <vector>
 
-int main()
+using namespace std;
 
-{
-Streaming ss;
-string t;
+int main(){
+	Streaming streaming;
+	string tipo;
 
-while (cin >> t) {
-if (t == "Filme")
+	while (cin >> tipo) {
+		if (tipo == "Filme"){
+			string nome, genero;
+			int n_temp = 0, total_ep = 0, ano, duracao;
+			cin >> genero >> ano >> duracao;
+			getline(cin, nome);
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+			Video* v = new Video(nome, ano, genero, tipo, duracao, n_temp, total_ep);
+			if (duracao >= 50){
+				streaming.cadastrar_filme(v);
+			}
+			else {
+				cout << "Duração inválida" << endl;
+			}
+		}
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+		else if (tipo == "Serie") {
+			string nome, genero;
+			int ano, n_temp, total_ep, filme_duracao = 0;
+			cin >> genero >> ano >> n_temp >> total_ep;
+			getline(cin, nome);
+			Video* v = new Video(nome, ano, genero, tipo, filme_duracao, n_temp, total_ep);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+			if (total_ep >= 2) {
+				streaming.cadastrar_serie(v);
+			}
+			else {
+				cout << "Número de episódios insuficiente" << endl;
+			}
+		}
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+		else if (tipo == "Nota") {
+			int id, nota;
+			cin >> id >> nota;
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+			if (nota <= 10 && nota >= 0) {
+				streaming.avaliacao(id, nota);
+			}
+		}
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
-
-return 0;
+		else if (tipo == "Mostrar") {
+			streaming.print_catalogo();
+		}
+	}
+	return 0;
 }
