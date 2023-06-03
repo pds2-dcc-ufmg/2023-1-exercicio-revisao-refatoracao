@@ -4,7 +4,8 @@
 #include <string>
 #include <vector>
 
-#include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
 
 using namespace std;
 
@@ -14,8 +15,8 @@ private:
 
 public:
 	Streaming();
-	void cadastrar_filme(Video* v);
-	void cadastrar_serie(Video* v);
+	void cadastrar_filme(Filme* f);
+	void cadastrar_serie(Serie* s);
 	void avaliacao(int id, int nota);
 	void print_catalogo();
 };
