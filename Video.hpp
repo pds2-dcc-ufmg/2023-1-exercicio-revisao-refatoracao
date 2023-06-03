@@ -8,15 +8,16 @@
 using namespace std;
 
 class Video {
-private:
-    int _ano, _filme_duracao, _n_temp, _total_ep;
-    std::string _nome, _genero, _subtipo;
+protected:
+    int _ano;
+    string _nome, _genero;
     list<int> avaliacoes;
 
 public:
-    Video(std::string nome, int ano, std::string genero, std::string subtipo, int filme_duracao, int n_temp, int total_ep);
+    Video(string nome, int ano, string genero);
+    virtual void print_info(int id) = 0; 
     float get_media_avaliacao();
     void avaliar(int nota);
-    void print_info(int id);
 };
+
 #endif
