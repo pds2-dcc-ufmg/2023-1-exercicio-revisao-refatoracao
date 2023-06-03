@@ -9,46 +9,61 @@ using namespace std;
 
 class Video {
 public:
-int ano, filme_duracao, n_temp, total_ep;
-string nome, genero, subtipo;
-list<int> avaliacoes;
+int _ano, _filme_duracao, _n_temp, _total_ep;
+string _nome, _genero, _subtipo;
+list<int> _avaliacoes;
 
-Video(string nome, int ano, string genero, string subtipo, int filme_duracao, int n_temp, int total_ep) : nome(nome), ano(ano), genero(genero), subtipo(subtipo), filme_duracao(filme_duracao),n_temp(n_temp), total_ep(total_ep)
-{
-}
+//Construtor Video
 
-float get_media_avaliacao() {
+Video(string nome, int ano, string genero, string subtipo, int filme_duracao, int n_temp, int total_ep){
+    _nome=nome;
+    _ano=ano;
+    _genero=genero;
+    _subtipo=subtipo;
+    _filme_duracao=filme_duracao;
+    _n_temp=n_temp;
+    _total_ep=total_ep;
+};
+
+//Função que retorna a media das avaliações
+
+float get_media_avaliacao(){
     float v = 0;
-    for (auto n : avaliacoes)v += n;
-    return v/avaliacoes.size();
-  }
+    for (auto n : _avaliacoes)v += n;
+    return v/_avaliacoes.size();
+};
+
+//Função para adicionar avaliação
 
 void avaliar(int nota) {
-  avaliacoes.push_back(nota);
-  }
+  _avaliacoes.push_back(nota);
+};
+
+//Função que retorna as informações de um filme ou serie
 
 void print_info(int id){
-  if (subtipo == "Filme") 
+  if (_subtipo == "Filme") 
   {
     cout << "Filme " << id << ":";
-    cout << nome;
-    cout << " (" << ano << "), ";
-    cout << genero;
-    cout << ", " << filme_duracao << " min, ";
+    cout << _nome;
+    cout << " (" << _ano << "), ";
+    cout << _genero;
+    cout << ", " << _filme_duracao << " min, ";
     cout << "nota: " << get_media_avaliacao() << std::endl;
   }
 
-  if (subtipo == "Serie")
+  if (_subtipo == "Serie")
   {
     cout << "Serie " << id << ":";
-    cout << nome;
-    cout << " (" << ano << "), ";
-    cout << genero << ", ";
-    cout << n_temp << " temporadas, ";
-    cout << total_ep << " episodios, ";
+    cout << _nome;
+    cout << " (" << _ano << "), ";
+    cout << _genero << ", ";
+    cout << _n_temp << " temporadas, ";
+    cout << _total_ep << " episodios, ";
     cout << "nota: " << get_media_avaliacao() << std::endl;
   }
 };
+
 };
 
 #endif
