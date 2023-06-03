@@ -1,42 +1,23 @@
+#ifndef STREAMING_HPP
+#define STREAMING_HPP
 
 #include <string>
 #include <vector>
 
-#include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
 
 using namespace std;
 
-class Streaming { 
+class Streaming {
+private:
+	vector<Video*> _catalogo;
+
 public:
-vector<Video*> catalogo;
-
-void cadastrar_filme(Video *v)
-{
-  catalogo.push_back(v);
-}
-
-void cadastrar_serie(Video *v)
-{
-  catalogo.push_back(v);
-}
-
-void avaliacao(int id, int nota) {
-  catalogo[id - 1]->avaliar(nota);
-  }
-
-
-void print_catalogo()
-{
-  if (catalogo.size()==0)
-    cout << "Sem video cadastrado!" << endl;
-  else {
-    cout << "Catalogo Streaming:";
-    cout << endl;
-    int i = 0;;
-    for (vector<Video*>::iterator it = catalogo.begin(); it != catalogo.end(); it++) {
-      (*it)->print_info(i + 1);
-      i++;
-    }
-  }
-}
+	Streaming();
+	void cadastrar_filme(Filme* f);
+	void cadastrar_serie(Serie* s);
+	void avaliacao(int id, int nota);
+	void print_catalogo();
 };
+#endif
