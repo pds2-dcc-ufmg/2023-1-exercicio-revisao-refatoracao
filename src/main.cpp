@@ -41,12 +41,9 @@ int main(){
                 Streaming.Avaliar(id_aux, nota);
             }
         }
-
-        else if(input == "teste")
-            Streaming.Printar_Catalogo();
     }
 
-    
+    Streaming.Printar_Catalogo();
 
     return 0;
 }
