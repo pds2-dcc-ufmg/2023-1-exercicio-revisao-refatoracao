@@ -9,7 +9,9 @@ void Streaming::Cadastrar_Serie(Serie* S){
 }
 
 void Streaming::Avaliar(int Id, int Nota){
-    _Catalogo[Id - 1]->Avaliar(Nota);
+    for(auto i : _Catalogo)
+        if(i->getId() == Id)
+            i->Avaliar(Nota);
 }
 
 void Streaming::Printar_Catalogo(){
@@ -21,7 +23,6 @@ void Streaming::Printar_Catalogo(){
 
         vector<Video*>::iterator index = _Catalogo.begin();
         for(; index != _Catalogo.end(); ++index){
-            
             //Identifica o subtipo do Video e o transforma em um ponteiro de Filme ou Serie a fim de chamar a função Imprimir_Informações()
             if((*index)->getSubtipo() == "Filme"){
                 Filme* aux = static_cast<Filme*>(*index);
