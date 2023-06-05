@@ -10,6 +10,7 @@ private:
     int duracao;
 
 public:
+    //CONSTRUTOR
     Filme(std::string nome, int ano, std::string genero, int duracao);
     int get_duracao();
     void print_info(int id);

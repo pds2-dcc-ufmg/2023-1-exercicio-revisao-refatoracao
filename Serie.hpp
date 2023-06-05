@@ -11,6 +11,7 @@ private:
     int num_episodios;
 
 public:
+    //CONSTRUTOR
     Serie(std::string nome, int ano, std::string genero, int num_temporadas, int num_episodios);
     int get_num_temporadas();
     int get_num_episodios();

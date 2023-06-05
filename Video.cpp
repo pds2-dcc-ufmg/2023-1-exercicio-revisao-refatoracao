@@ -10,3 +10,7 @@ float Video::get_media_avaliacao() {
     }
     return (avaliacoes.empty() ? 0 : soma / avaliacoes.size());
 }
+
+void Video::avaliar(int nota) {
+    avaliacoes.push_back(nota);
+}
