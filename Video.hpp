@@ -7,6 +7,7 @@
 
 class Video {
 protected:
+  //ATRIBUTOS
     std::string nome;
     int ano;
     std::string genero;

@@ -8,9 +8,11 @@
 
 class Streaming {
 private:
+    //ATRIBUTOS
     std::vector<Video*> catalogo;
 
 public:
+    //MÉTODOS
     void cadastrar_filme(Filme* f);
     void cadastrar_serie(Serie* s);
     void avaliar(int id, int nota);

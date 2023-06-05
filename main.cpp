@@ -4,8 +4,7 @@
 #include <iostream>
 #include <string>
 
-int main()
-{
+int main(){
     Streaming ss;
     std::string tipo;
 
