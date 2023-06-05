@@ -1,60 +1,72 @@
 #include "Streaming.hpp"
+#include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
 #include <iostream>
 #include <list>
 #include <string>
 #include <vector>
 
-int main()
+//constantes determinadas no READ.ME
+const int tempo_minimo_filme = 50;
+const int numero_minimo_episodios = 2;
+const int nota_minima = 0;
+const int nota_maxima = 10;
 
-{
-Streaming ss;
-string t;
+int main(){
+Streaming streaming;
+std::string comando;
 
-while (cin >> t) {
-if (t == "Filme")
+while (std::cin >> comando) {
+  
+//criação e cadastro de filme ao streaming de acordo com as condições de tempo mínimo estipuladas (mínimo de 50 minutos de duração).  
+  if (comando == "Filme"){
+    std::string nome, genero;
+    int ano, duracao;
+    std::cin >> genero >> ano >> duracao;
+    std::getline(std::cin, nome);
+  
+    Filme *filme = new Filme(nome, ano, genero, duracao);
+    
+    if (duracao >= tempo_minimo_filme){
+      streaming.cadastrar_filme(filme);
+    }
+  }
+  
+//criação e cadastro de série ao streaming de acordo com as condições de episódios estipuladas (mínimo de dois episódios). 
+  if (comando == "Serie") {
+    std::string nome, genero;
+    int ano, numero_temporadas, total_episodios;
+    std::cin >> genero >> ano >> numero_temporadas >> total_episodios;
+    std::getline(std::cin, nome);
+    
+    Serie *serie = new Serie(nome, ano, genero, numero_temporadas, total_episodios);
+    
+    if (total_episodios >= numero_minimo_episodios) {
+      streaming.cadastrar_serie(serie);
+    }
+  }
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+// avaliação de vídeo do streaming de zero a dez.
+  if (comando == "Nota") {
+    int id, nota;
+    std::cin >> id >> nota;
+    
+    if (nota >= nota_minima && nota <= nota_maxima) {
+      streaming.avaliacao(id, nota);
+    }
+  } 
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+  if(comando=="fim"){
+    streaming.print_catalogo();
+  }
+  
+}
+streaming.print_catalogo();
+  
+//desalocar ponteiros e limpar memória
+streaming.limpar_catalogo(); 
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
-
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
-
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
-
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
 
 return 0;
 }
