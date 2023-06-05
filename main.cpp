@@ -1,5 +1,7 @@
 #include "Streaming.hpp"
 #include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
 #include <iostream>
 #include <list>
 #include <string>
@@ -24,12 +26,12 @@ while (std::cin >> comando) {
     std::cin >> genero >> ano >> duracao;
     std::getline(std::cin, nome);
   
-    Video *filme = new Video(nome, ano, genero, "Filme", duracao, 0, 0);
+    Filme *filme = new Filme(nome, ano, genero, duracao);
     
     if (duracao >= tempo_minimo_filme){
       streaming.cadastrar_filme(filme);
-      }
     }
+  }
   
 //criação e cadastro de série ao streaming de acordo com as condições de episódios estipuladas (mínimo de dois episódios). 
   if (comando == "Serie") {
@@ -38,7 +40,7 @@ while (std::cin >> comando) {
     std::cin >> genero >> ano >> numero_temporadas >> total_episodios;
     std::getline(std::cin, nome);
     
-    Video *serie = new Video(nome, ano, genero, "Serie", 0, numero_temporadas, total_episodios);
+    Serie *serie = new Serie(nome, ano, genero, numero_temporadas, total_episodios);
     
     if (total_episodios >= numero_minimo_episodios) {
       streaming.cadastrar_serie(serie);
@@ -60,8 +62,11 @@ while (std::cin >> comando) {
   }
   
 }
-
 streaming.print_catalogo();
+  
+//desalocar ponteiros e limpar memória
+streaming.limpar_catalogo(); 
+
 
 return 0;
 }

@@ -1,12 +1,15 @@
 #include "Streaming.hpp"
+#include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
 #include <string>
 #include <vector>
 
-void Streaming::cadastrar_filme(Video *filme){
+void Streaming::cadastrar_filme(Filme* filme){
   catalogo.push_back(filme);
 }
 
-void Streaming::cadastrar_serie(Video *serie){
+void Streaming::cadastrar_serie(Serie* serie){
   catalogo.push_back(serie);
 }
 
@@ -28,3 +31,11 @@ void Streaming::print_catalogo(){
     }
   }
 }
+
+//método para limpar a memória
+void Streaming::limpar_catalogo() {
+    for (Video* video : catalogo) {
+      delete video;
+    }
+    catalogo.clear();
+  }
