@@ -1,4 +1,7 @@
 #include "Streaming.hpp"
+#include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
 
 int main()
 {
@@ -16,7 +19,7 @@ int main()
             getline(std::cin, nome);
 
             Video *video;
-            video = new Video(nome, ano, genero, input, duracao, 0, 0);
+            video = new Filme(nome, ano, genero, duracao);
             if (50 <= duracao) {
                 plataforma.cadastrar_filme(video);
             }
@@ -27,7 +30,7 @@ int main()
             std::cin >> genero >> ano >> n_temp >> total_ep;
             getline(std::cin, nome);
             Video *video;
-            video = new Video(nome, ano, genero, input, 0, n_temp, total_ep);
+            video = new Serie(nome, ano, genero, n_temp, total_ep);
             
             //uma serie precisa ter pelo menos 2 episodios
             if (2 <= total_ep) {
