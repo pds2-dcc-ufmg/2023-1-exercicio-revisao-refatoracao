@@ -4,57 +4,51 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 int main()
-
 {
-Streaming ss;
-string t;
+    Streaming streaming;
+    string command;
+    
+    while (cin >> command) {
+        if (command == "Filme") {
+            string title, genre;
+            int year, duration;
+            cin >> genre >> year >> duration;
+            cin.ignore();
+            getline(std::cin, title);
 
-while (cin >> t) {
-if (t == "Filme")
+            Video* video = new Video(title, year, genre, command, duration, 0, 0);
+            if (duration >= 50) {
+                streaming.cadastrar_filme(video);
+            }
+        }
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+        if (command == "Serie") {
+            string title, genre;
+            int year, numSeasons, totalEpisodes;
+            cin >> genre >> year >> numSeasons >> totalEpisodes;
+            cin.ignore();
+            getline(std::cin, title);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            Video* video = new Video(title, year, genre, command, 0, numSeasons, totalEpisodes);
+            if (numSeasons >= 2) {
+                streaming.cadastrar_serie(video);
+            }
+        }
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+        if (command == "Nota") {
+            int id, rating;
+            cin >> id >> rating;
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            if (rating >= 0 && rating <= 10) {
+                streaming.avaliacao(id, rating);
+            }
+        }
+    }
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+    streaming.print_catalogo();
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
-
-return 0;
+    return 0;
 }
