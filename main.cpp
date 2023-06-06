@@ -1,60 +1,47 @@
 #include "Streaming.hpp"
-#include <iostream>
-#include <list>
-#include <string>
-#include <vector>
 
 int main()
-
 {
-Streaming ss;
-string t;
+    Streaming streaming;
+    std::string tipo;
 
-while (cin >> t) {
-if (t == "Filme")
+    while(std::cin >> tipo) {
+        std::string nome, genero;
+        int ano;
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+        if(tipo == "Filme") {
+            int duracao;
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            std::cin >> genero >> ano >> duracao;
+            getline(std::cin, nome);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            Filme *filme = new Filme(ano, nome, genero, duracao);
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            if(duracao >= 50)
+                streaming.cadastrar_video(filme);
+        }
+        else if(tipo == "Serie") {
+            int n_temp, total_ep;
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            std::cin >> genero >> ano >> n_temp >> total_ep;
+            getline(std::cin, nome);
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+            Serie *serie = new Serie(ano, nome, genero, n_temp, total_ep);
 
-return 0;
+            if(total_ep >= 2)
+                streaming.cadastrar_video(serie);
+        }
+        else if(tipo == "Nota") {
+            int id, nota;
+
+            std::cin >> id >> nota;
+
+            if(nota <= 10 && nota >= 0) {
+                streaming.avaliacao(id, nota);
+            }
+        }
+    }
+    streaming.print_catalogo();
+
+    return 0;
 }
