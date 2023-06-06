@@ -1,22 +1,16 @@
-#ifndef VIDEO_HPP
-#define VIDEO_HPP
+#include "Video.hpp"
 
-#include <string>
-#include <iostream>
-#include <list>
+Video::Video(string nome, int ano, string genero, string subtipo, int duracaoFilme, int numTemporadas, int totalEpisodios) 
+: nome(nome), ano(ano), genero(genero), subtipo(subtipo), duracaoFilme(duracaoFilme), numTemporadas(numTemporadas), totalEpisodios(totalEpisodios) {}
 
-using namespace std;
+float Video::calcularMediaAvaliacao() {
+    float soma = 0;
+    for (auto nota : avaliacoes)
+        soma += nota;
+    return soma / avaliacoes.size();
+}
 
-class Video {
-public:
-    string nome, genero, subtipo;
-    int ano, duracaoFilme, numTemporadas, totalEpisodios;
-    list<int> avaliacoes;
+void Video::adicionarAvaliacao(int nota) {
+    avaliacoes.push_back(nota);
+}
 
-    Video(string nome, int ano, string genero, string subtipo, int duracaoFilme, int numTemporadas, int totalEpisodios);
-    float calcularMediaAvaliacao();
-    void adicionarAvaliacao(int nota);
-    virtual void imprimirInfo(int id) = 0; // Método puramente virtual
-};
-
-#endif
