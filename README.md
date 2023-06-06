@@ -1,19 +1,20 @@
-# Exercício de Revisão e Refatoração
+# Descrição das soluções utilizadas.
 
-O objetivo dessa atividade é praticar a parte de revisão e refatoração utilizando um sistema de controle de versão.
+Neste projeto de refatoração melhorei o projeto original, apliquei diversas práticas recomendadas de programação aprendidas em aula.
+Aqui estão algumas das principais mudanças que fiz:
 
-**Considere a seguinte descrição em alto nível da funcionalidade do código:**  
-> Um streaming precisa cadastrar novas séries e filmes no seu sistema e também adicionar a nota dos usuários pertencentes a cada série e filme. Para isso é considerado em seu sistema que todo filme precisa ter duração a partir de 50 minutos, toda série precisa ter pelo menos 2 episódios e as avaliações dos usuários fiquem no intervalo de 0 a 10. Por fim, o código imprimirá todos os conteúdos presentes em seu catálogo.
+ Nomenclatura -> Renomeei várias variáveis e métodos para torná-los mais autoexplicativos, reduzindo o numero de comentarios necessários para o entendimento do programa. Por exemplo, 'n_temp' (o que é isso? n do que? temp é temperatura?) foi renomeado para 'num_temporadas' e 'avaliacao' para 'adicionar_avaliacao'
 
-O código atual pode ser compilado/executado usando os seguintes comandos:
-```
-g++ main.cpp -o vpl_exec
-./vpl_exec < in.txt
-```
+ Formatação -> Trabalhei na formatação do código para torná-lo mais legível. Como melhorar a indentação e adicionar mais espaços o que torna o código mais facil de ler.
 
-Você deve criar um **Fork** desse repositório, fazer as alterações que julgar necessárias e então realizar um **Pull Request**. Você é livre para criar outros arquivos, classes, métodos, etc., desde que o main continue produzindo a mesma saída. Lembre-se que essa etapa não altera o comportamento funcional.
+ Conceitos de OO ->Refatorei o código para melhor utilizar os conceitos de OO aprendidos em aula. Criamos duas novas subclasses 'Filme' e 'Serie' que herdam da classe abstrata 'Video'
 
-No **título** do seu Pull Request, informe o valor **MD5** obtido a partir da sua **matrícula**. Você pode gerar esse valor a partir de diferentes sites, um exemplo está [aqui](http://www.md5.cz/). Lembre-se de também informar seus dados no forms disponibilizado no Moodle. Na **descrição** faça uma **lista/análise detalhada** das **soluções** que você utilizou. Submissões que não seguirem essas instruções não serão avaliadas.
+ Modularização -> Dividi o código em vários arquivos para tornar mais organizado e fácil de entender, o que facilita a adição de novas funções, manuntenção e trabalho em equipe. Por isso criei arquivos separadas para cada classe como 'Filme', 'Serie', 'Video' e 'Streaming'.
 
-Lembre-se de analisar aspectos como: nomenclatura, formatação, organização, modularização, comentários, aplicação correta dos conceitos de OO, entre outros.
-Dica: Utilize o catálogo para pensar em possíveis sugestões de refatoração (https://refactoring.com/catalog/).
+ Redundância de Código -> No código original, a classe Video era usada pra representar tanto filmes quanto séries, o que era redundante, ja que os mesmos campos eram usados para duas categorias, mas interpretados de maneira diferente. Outra razão para separar em 'Filme' e 'Serie'
+
+ Uso de bibliotecas em exceso -> Antes o programa estava com bibliotecas em multiplos arquivos de forma desnecessária. Nesse código refatorado só usamos quando necessário. Por exemplo, foi retirado do main.cpp algumas bibliotecas que arquivos que ja estavam sendo incluidos utilizam.
+
+ Por fim, também criei as exceções (Tempo minimo para filme 50 minutos, série deve ter ao menos 2 episodios, nota entre 1 e 10) para garantir que recebam um aviso caso algum dos casos sejam desobedecidos. 
+
+
