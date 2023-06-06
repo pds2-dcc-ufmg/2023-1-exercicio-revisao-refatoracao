@@ -1,9 +1,8 @@
 #include "Video.hpp"
 
-Video::Video(std::string nome, int ano, std::string genero, std::string subtipo, int filme_duracao, int n_temp, int total_ep)
-    : nome(nome), ano(ano), genero(genero), subtipo(subtipo), filme_duracao(filme_duracao), n_temp(n_temp), total_ep(total_ep) {
+Video::Video(std::string _nome, int _ano, std::string _genero, std::string _subtipo, int _filme_duracao, int _n_temp, int _total_ep)
+    : nome(_nome), ano(_ano), genero(_genero), subtipo(_subtipo), filme_duracao(_filme_duracao), n_temp(_n_temp), total_ep(_total_ep) {
 }
-
 float Video::get_media_avaliacao() {
     float v = 0;
     for (auto n : avaliacoes)

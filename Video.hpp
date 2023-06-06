@@ -11,7 +11,7 @@ public:
     std::string nome, genero, subtipo;
     std::list<int> avaliacoes;
 
-    Video(std::string nome, int ano, std::string genero, std::string subtipo, int filme_duracao, int n_temp, int total_ep);
+    Video(std::string _nome, int _ano, std::string _genero, std::string _subtipo, int _filme_duracao, int _n_temp, int _total_ep);
 
     float get_media_avaliacao();
     void avaliar(int nota);
