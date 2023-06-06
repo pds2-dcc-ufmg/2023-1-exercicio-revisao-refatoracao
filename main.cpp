@@ -1,60 +1,57 @@
 #include "Streaming.hpp"
-#include <iostream>
-#include <list>
-#include <string>
-#include <vector>
+#include "Video.hpp"
+#include "Filme.hpp"
+#include "Serie.hpp"
 
-int main()
+int main(){
+	Streaming streaming;
+	std::string menu;
+	
+	std::string nome;
+	std::string genero;
+	int anoLancamento;
+	int duracaoFilme;
+	int numeroTemporadas;
+	int totalEpisodios;
+	int id;
+	float nota;
+	
+	const int duracaoMinimaFilme = 50;
+	const int numeroMinimoEpisodios = 2;
+	const float notaMaxima = 10.0;
+	const float notaMinima = 0.0;
+	
 
-{
-Streaming ss;
-string t;
-
-while (cin >> t) {
-if (t == "Filme")
-
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
-
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
-
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
-
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
-
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
-
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
-
-return 0;
+	while (std::cin >> menu) {
+		if (menu == "Filme"){
+			std::cin >> genero >> anoLancamento >> duracaoFilme;
+			std::getline(std::cin, nome);
+			Filme *filme = new Filme(nome, anoLancamento, genero, duracaoFilme);
+			
+			if (duracaoFilme >= duracaoMinimaFilme){
+				streaming.cadastrarFilme(filme);
+			}
+		}
+		
+		if (menu == "Serie"){
+			std::cin >> genero >> anoLancamento >> numeroTemporadas >> totalEpisodios;
+			std::getline(std::cin, nome);
+			Serie *serie = new Serie(nome, anoLancamento, genero, numeroTemporadas, totalEpisodios);
+			if (totalEpisodios >= numeroMinimoEpisodios){
+				streaming.cadastrarSerie(serie);
+			}
+		}
+		
+		if (menu == "Nota") {
+			std::cin >> id >> nota;
+			
+			if ((nota >= 0) && (nota <= 10)) {
+				streaming.avaliacao(id, nota);
+			}
+		}
+		
+	}
+	
+	streaming.printCatalogo();
+	return 0;
 }
