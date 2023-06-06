@@ -1,60 +1,59 @@
 #include "Streaming.hpp"
-#include <iostream>
-#include <list>
-#include <string>
-#include <vector>
 
-int main()
+using namespace std;
 
-{
-Streaming ss;
-string t;
+int main() {
 
-while (cin >> t) {
-if (t == "Filme")
+    Streaming streaming;
+    string data;
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+    while (cin >> data) {
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+        if (data == "Filme") {
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            string nome, genero;
+            int ano, duracao;
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            cin >> genero >> ano >> duracao;
+            getline(cin, nome);
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            if (50 <= duracao){
+                streaming.cadastrar(new Filme(nome, genero, ano, duracao));
+            }
+            
+        }
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+        if (data == "Serie") {
 
-return 0;
+            string nome;
+            string genero;
+            int ano, temporadas, duracao_episodio;
+
+            cin >> genero >> ano >> temporadas >> duracao_episodio;
+            getline(cin, nome);
+
+        
+            if (2 <= duracao_episodio) {
+                streaming.cadastrar(new Serie(nome, genero, ano, temporadas, duracao_episodio));
+            }
+
+        }
+
+        if (data == "Nota") {
+
+            int id, nota;
+
+            cin >> id >> nota;
+
+            if (nota <= 10 && nota >= 0) {
+                streaming.avaliacao(id, nota);
+            }
+
+        }
+
+    }
+
+    streaming.print_catalogo();
+
+    return 0;
 }
