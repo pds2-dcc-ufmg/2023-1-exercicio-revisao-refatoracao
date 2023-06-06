@@ -1,8 +1,4 @@
 #include "Video.hpp"
-#include <string>
-#include <iostream>
-#include <list>
-
 
 Video(string nome, int ano, string genero, string subtipo, int filme_duracao, int n_temp, int total_ep) : nome(nome), ano(ano), genero(genero), subtipo(subtipo), filme_duracao(filme_duracao),n_temp(n_temp), total_ep(total_ep)
 {}//Construtor
