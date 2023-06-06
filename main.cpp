@@ -1,60 +1,43 @@
 #include "Streaming.hpp"
-#include <iostream>
-#include <list>
-#include <string>
-#include <vector>
 
-int main()
+int main(){
 
-{
-Streaming ss;
-string t;
+Streaming stream;
+std :: string palavra;
+std::string nome, genero;
+int ano, duracao, numtemp, totep, i, na;
 
-while (cin >> t) {
-if (t == "Filme")
+while (std::cin >> palavra) {
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+    if (palavra == "Filme"){
+        std::cin >> genero >> ano >> duracao;
+        getline(std::cin, nome);    
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+        Video *v;
+        v = new Video(nome, ano, genero, palavra, duracao, 0, 0);
+        if (50 <= duracao){
+            stream.cadastrar_tudo(v);
+        }
+    }
+    if (palavra == "Serie") {
+        std::cin >> genero >> ano >> numtemp >> totep;
+        getline(std::cin, nome);
+        Video *v;
+        v = new Video(nome, ano, genero, palavra, 0, numtemp, totep);
+        if (2 <= totep) {
+        stream.cadastrar_tudo(v);
+        }
+    }
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+    if (palavra == "Nota") {
+    std:: cin >> i >> na;
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
+        if ((na <= 10)&&(na >= 0)) {
+            stream.avaliacao(i, na);
+        }
+    }
 }
-}
-}
-
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
-
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+stream.print_catalogo();
 
 return 0;
 }
