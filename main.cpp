@@ -4,57 +4,56 @@
 #include <string>
 #include <vector>
 
-int main()
+const int NUMERO_MIN_DURACAO_FILME = 50;
+const int NUMERO_MIN_DE_EPSODIOS= 2;
+const int NUM_MAX_DE_NOTA= 10;
+const int NUM_MIN_DE_NOTA= 0;
 
-{
-Streaming ss;
-string t;
+int main(){
+    Streaming streaming;
+    std::string palavra_input;
 
-while (cin >> t) {
-if (t == "Filme")
+    while (std::cin >> palavra_input) {
+        if (palavra_input == "Filme"){
+            std::string nome, genero;
+            int ano, duracao;
+            std::cin >> genero >> ano >> duracao;
+            std::getline(std::cin, nome);
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            Video *video;
+            video = new Video(nome, ano, genero, palavra_input, duracao, 0, 0);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            if (NUMERO_MIN_DURACAO_FILME <= duracao){
+                streaming.cadastrar_filme(video);
+            }
+            
+        }
+        if (palavra_input == "Serie") {
+            std::string nome;
+            std::string genero;
+            int ano, numero_de_temporadas, totais_de_epsodios;
+            std::cin >> genero >> ano >> numero_de_temporadas >> totais_de_epsodios;
+            std::getline(std::cin, nome);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            Video *video;
+            video = new Video(nome, ano, genero, palavra_input, 0, numero_de_temporadas, totais_de_epsodios);
+            if (NUMERO_MIN_DE_EPSODIOS <= totais_de_epsodios){
+                streaming.cadastrar_serie(video);
+            }
+        }
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+        if (palavra_input == "Nota") {
+            int id, nota;
+            std::cin >> id >> nota;
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            if (nota <= NUM_MAX_DE_NOTA) {
+                if (nota >= NUM_MIN_DE_NOTA) {
+                    streaming.avaliacao(id, nota);
+                }
+            }
+        }
+    }
+    streaming.print_catalogo();
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
-
-return 0;
+    return 0;
 }
