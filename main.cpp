@@ -1,60 +1,56 @@
 #include "Streaming.hpp"
-#include <iostream>
-#include <list>
-#include <string>
-#include <vector>
+#include "Filme.hpp"
+#include "Serie.hpp"
+#include "Video.hpp"
 
-int main()
+int main() {
+    Streaming streaming;
+    std::string tipo;
 
-{
-Streaming ss;
-string t;
+    while (std::cin >> tipo) {
+        if (tipo == "Serie") {
+            std::string nome;
+            std::string genero;
+            int ano, numero_temporadas, tamanho_episodios;
 
-while (cin >> t) {
-if (t == "Filme")
+            std::cin >> genero >> ano >> numero_temporadas >> tamanho_episodios;
+            std::cin.ignore();
+            getline(std::cin, nome);
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            Video* video = new Serie(nome, genero, ano, numero_temporadas, tamanho_episodios);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
-
-{
-ss.cadastrar_filme(v);
+            if (2 <= tamanho_episodios)
+                streaming.cadastrar_video(video);
 }
-}
-if (t == "Serie") {
+        if (tipo == "Filme") {
+            std::string nome;
+            std::string genero;
+            int ano, duracao;
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            std::cin >> genero >> ano >> duracao;
+            std::cin.ignore();
+            getline(std::cin, nome);
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            Video* sex3oRetorno = new Filme(nome, genero, ano, duracao);
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+            if (duracao >= 50)
+                streaming.cadastrar_video(sex3oRetorno);
+        }
 
-return 0;
+
+
+        // Avaliar um item do catálogo
+        if (tipo == "Nota") {
+            unsigned int id, nota;
+            std::cin >> id >> nota;
+
+            if (nota <= 10) {
+                streaming.avaliar_video(id, nota);
+            }
+        }
+    }
+
+    streaming.imprimir_catalogo();
+
+    return 0;
 }
