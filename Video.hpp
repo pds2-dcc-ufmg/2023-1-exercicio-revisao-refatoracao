@@ -5,50 +5,18 @@
 #include <iostream>
 #include <list>
 
-using namespace std;
-
 class Video {
 public:
-int ano, filme_duracao, n_temp, total_ep;
-string nome, genero, subtipo;
-list<int> avaliacoes;
+// armazenar dados
+    int ano, filme_duracao, n_temp, total_ep;
+    std::string nome, genero, subtipo;
+    std::list<int> avaliacoes;
 
-Video(string nome, int ano, string genero, string subtipo, int filme_duracao, int n_temp, int total_ep) : nome(nome), ano(ano), genero(genero), subtipo(subtipo), filme_duracao(filme_duracao),n_temp(n_temp), total_ep(total_ep)
-{
-}
+    Video(std::string _nome, int _ano, std::string _genero, std::string _subtipo, int _filme_duracao, int _n_temp, int _total_ep);
 
-float get_media_avaliacao() {
-    float v = 0;
-    for (auto n : avaliacoes)v += n;
-    return v/avaliacoes.size();
-  }
-
-void avaliar(int nota) {
-  avaliacoes.push_back(nota);
-  }
-
-void print_info(int id){
-  if (subtipo == "Filme") 
-  {
-    cout << "Filme " << id << ":";
-    cout << nome;
-    cout << " (" << ano << "), ";
-    cout << genero;
-    cout << ", " << filme_duracao << " min, ";
-    cout << "nota: " << get_media_avaliacao() << std::endl;
-  }
-
-  if (subtipo == "Serie")
-  {
-    cout << "Serie " << id << ":";
-    cout << nome;
-    cout << " (" << ano << "), ";
-    cout << genero << ", ";
-    cout << n_temp << " temporadas, ";
-    cout << total_ep << " episodios, ";
-    cout << "nota: " << get_media_avaliacao() << std::endl;
-  }
-};
+    float get_media_avaliacao(); //calcular media
+    void avaliar(int nota); //realizar avaliacao
+    void print_info(int id); //mostrar infos
 };
 
-#endif
+#endif  // VIDEO_HPP
