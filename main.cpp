@@ -6,17 +6,18 @@
 
 int main()
 {
+    std::string t;
+
     Streaming ss;
-    string t;
 
-    while (cin >> t) {
+    while (std::cin >> t) {
         if (t == "Filme") {
-            string n, g;
+            std::string n, g;
             int a, d;
-            cin >> g >> a >> d;
-            getline(cin, n);
+            std::cin >> g >> a >> d;
+            std::getline(std::cin, n);
 
-            Video *v;
+            Video* v;
             v = new Video(n, a, g, t, d, 0, 0);
 
             if (50 <= d) {
@@ -25,12 +26,12 @@ int main()
         }
 
         if (t == "Serie") {
-            string n, g;
+            std::string n, g;
             int a, nt, te;
-            cin >> g >> a >> nt >> te;
-            getline(cin, n);
+            std::cin >> g >> a >> nt >> te;
+            std::getline(std::cin, n);
 
-            Video *v;
+            Video* v;
             v = new Video(n, a, g, t, 0, nt, te);
 
             if (2 <= te) {
@@ -40,7 +41,7 @@ int main()
 
         if (t == "Nota") {
             int i, n;
-            cin >> i >> n;
+            std::cin >> i >> n;
 
             if (n <= 10 && n >= 0) {
                 ss.avaliacao(i, n);
