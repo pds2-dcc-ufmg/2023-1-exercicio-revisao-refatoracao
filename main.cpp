@@ -4,52 +4,53 @@
 #include <string>
 #include <vector>
 
+
 int main()
 
 {
 Streaming ss;
-string t;
+std::string tipo;
 
-while (cin >> t) {
-if (t == "Filme")
+while (std::cin >> tipo) {
+if (tipo == "Filme")
 
 {
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+std::string nome, genero;
+int ano, duracao;
+std::cin >> genero >> ano >> duracao;
+std::getline(std::cin, nome);
 
 Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+v = new Video(nome, ano, genero, tipo, duracao, 0, 0);
+if (50 <= duracao)
 
 {
 ss.cadastrar_filme(v);
 }
 }
-if (t == "Serie") {
+if (tipo == "Serie") {
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
+std::string nome;
+std::string genero;
+int ano, n_temp, total_ep;
+std::cin >> genero >> ano >> n_temp >> total_ep;
+std::getline(std::cin, nome);
 Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
+v = new Video(nome, ano, genero, tipo, 0, n_temp, total_ep);
+if (2 <= total_ep) {
 {
 ss.cadastrar_serie(v);
 }
 }
 }
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+if (tipo == "Nota") {
+int id, nota;
+std::cin >> id >> nota;
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
+if (nota <= 10) {
+if (nota >= 0) {
+ss.avaliacao(id, nota);
 }
 }
 }
