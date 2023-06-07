@@ -5,56 +5,50 @@
 #include <vector>
 
 int main()
-
 {
-Streaming ss;
-string t;
+    Streaming ss;
+    string t;
 
-while (cin >> t) {
-if (t == "Filme")
+    while (cin >> t) {
+        if (t == "Filme") {
+            string n, g;
+            int a, d;
+            cin >> g >> a >> d;
+            getline(cin, n);
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            Video *v;
+            v = new Video(n, a, g, t, d, 0, 0);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            if (50 <= d) {
+                ss.cadastrar_filme(v);
+            }
+        }
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+        if (t == "Serie") {
+            string n, g;
+            int a, nt, te;
+            cin >> g >> a >> nt >> te;
+            getline(cin, n);
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            Video *v;
+            v = new Video(n, a, g, t, 0, nt, te);
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            if (2 <= te) {
+                ss.cadastrar_serie(v);
+            }
+        }
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+        if (t == "Nota") {
+            int i, n;
+            cin >> i >> n;
 
-return 0;
+            if (n <= 10 && n >= 0) {
+                ss.avaliacao(i, n);
+            }
+        }
+    }
+
+    ss.print_catalogo();
+
+    return 0;
 }
