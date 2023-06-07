@@ -1,4 +1,3 @@
-
 #ifndef STREAMING_HPP
 #define STREAMING_HPP
 
@@ -17,7 +16,7 @@ public:
 
     void avaliacao(int ID, int nota);
 
-    void print_catalogo();
+    void print_catalogo() const;
 };
 
 #endif
