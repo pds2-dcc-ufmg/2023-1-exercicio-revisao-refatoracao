@@ -6,50 +6,50 @@
 
 int main()
 {
-    std::string t;
+    std::string tipo;
 
-    Streaming ss;
+    Streaming streamingService;
 
-    while (std::cin >> t) {
-        if (t == "Filme") {
-            std::string n, g;
-            int a, d;
-            std::cin >> g >> a >> d;
-            std::getline(std::cin, n);
+    while (std::cin >> tipo) {
+        if (tipo == "Filme") {
+            std::string nome, genero;
+            int ano, duracao;
+            std::cin >> genero >> ano >> duracao;
+            std::getline(std::cin, nome);
 
-            Video* v;
-            v = new Video(n, a, g, t, d, 0, 0);
+            Video* video;
+            video = new Video(nome, ano, genero, tipo, duracao, 0, 0);
 
-            if (50 <= d) {
-                ss.cadastrar_filme(v);
+            if (duracao >= 50) {
+                streamingService.cadastrar_filme(video);
             }
         }
 
-        if (t == "Serie") {
-            std::string n, g;
-            int a, nt, te;
-            std::cin >> g >> a >> nt >> te;
-            std::getline(std::cin, n);
+        if (tipo == "Serie") {
+            std::string nome, genero;
+            int ano, numeroTemporadas, totalEpisodios;
+            std::cin >> genero >> ano >> numeroTemporadas >> totalEpisodios;
+            std::getline(std::cin, nome);
 
-            Video* v;
-            v = new Video(n, a, g, t, 0, nt, te);
+            Video* video;
+            video = new Video(nome, ano, genero, tipo, 0, numeroTemporadas, totalEpisodios);
 
-            if (2 <= te) {
-                ss.cadastrar_serie(v);
+            if (totalEpisodios >= 2) {
+                streamingService.cadastrar_serie(video);
             }
         }
 
-        if (t == "Nota") {
-            int i, n;
-            std::cin >> i >> n;
+        if (tipo == "Nota") {
+            int id, nota;
+            std::cin >> id >> nota;
 
-            if (n <= 10 && n >= 0) {
-                ss.avaliacao(i, n);
+            if (nota >= 0 && nota <= 10) {
+                streamingService.avaliacao(id, nota);
             }
         }
     }
 
-    ss.print_catalogo();
+    streamingService.print_catalogo();
 
     return 0;
 }
