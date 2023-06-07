@@ -1,60 +1,57 @@
 #include "Streaming.hpp"
+#include "Video.hpp"
 #include <iostream>
 #include <list>
 #include <string>
 #include <vector>
 
-int main()
+int main() {
+    Streaming ss;
+    string subtipo;
 
-{
-Streaming ss;
-string t;
+    while (cin >> subtipo) {
+        if (subtipo == "Filme") {
+            string nome, genero;
+            int ano, duracao;
 
-while (cin >> t) {
-if (t == "Filme")
+            cin >> genero >> ano >> duracao;
+            getline(cin, nome);
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            Video *v;
+            v = new Video(nome, ano, genero, subtipo, duracao, 0, 0);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            if (50 <= duracao) {
+                ss.cadastrar_filme(v);
+            }
+        }
+        if (subtipo == "Serie") 
+        {
+            string nome;
+            string genero;
+            int ano, n_temp, total_ep;
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            cin >> genero >> ano >> n_temp >> total_ep;
+            getline(cin, nome);
+            Video *v;
+            v = new Video(nome, ano, genero, subtipo, 0, n_temp, total_ep);
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            if (2 <= total_ep) 
+            {
+                ss.cadastrar_serie(v);
+            }
+        }
+        if (subtipo == "Nota") 
+        {
+            int id, nota;
+            cin >> id >> nota;
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            if (nota <= 10 && nota >= 0) {
+                    ss.avaliacao(id, nota);
+            }
+        }
+    }
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+    ss.print_catalogo();
 
-return 0;
+    return 0;
 }
