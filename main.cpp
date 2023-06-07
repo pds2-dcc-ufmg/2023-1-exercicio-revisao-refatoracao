@@ -6,9 +6,9 @@
 
 int main()
 {
-    std::string tipo;
+    std::string tipo; // Variável para armazenar o tipo de vídeo (Filme, Serie)
 
-    Streaming streamingService;
+    Streaming streamingService; // Instância da classe Streaming
 
     while (std::cin >> tipo) {
         if (tipo == "Filme") {
@@ -21,7 +21,7 @@ int main()
             video = new Video(nome, ano, genero, tipo, duracao, 0, 0);
 
             if (duracao >= 50) {
-                streamingService.cadastrar_filme(video);
+                streamingService.cadastrar_filme(video); // Cadastra o filme no catálogo do serviço de streaming
             }
         }
 
@@ -35,7 +35,7 @@ int main()
             video = new Video(nome, ano, genero, tipo, 0, numeroTemporadas, totalEpisodios);
 
             if (totalEpisodios >= 2) {
-                streamingService.cadastrar_serie(video);
+                streamingService.cadastrar_serie(video); // Cadastra a série no catálogo do serviço de streaming
             }
         }
 
@@ -44,12 +44,12 @@ int main()
             std::cin >> id >> nota;
 
             if (nota >= 0 && nota <= 10) {
-                streamingService.avaliacao(id, nota);
+                streamingService.avaliacao(id, nota); // Avalia um vídeo do catálogo do serviço de streaming
             }
         }
     }
 
-    streamingService.print_catalogo();
+    streamingService.print_catalogo(); // Imprime o catálogo do serviço de streaming
 
     return 0;
 }
