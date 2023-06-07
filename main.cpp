@@ -5,56 +5,51 @@
 #include <vector>
 
 int main()
-
 {
-Streaming ss;
-string t;
+    std::string tipo; // Variável para armazenar o tipo de vídeo (Filme, Serie)
 
-while (cin >> t) {
-if (t == "Filme")
+    Streaming streamingService; // Instância da classe Streaming
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+    while (std::cin >> tipo) {
+        if (tipo == "Filme") {
+            std::string nome, genero;
+            int ano, duracao;
+            std::cin >> genero >> ano >> duracao;
+            std::getline(std::cin, nome);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            Video* video;
+            video = new Video(nome, ano, genero, tipo, duracao, 0, 0);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            if (duracao >= 50) {
+                streamingService.cadastrar_filme(video); // Cadastra o filme no catálogo do serviço de streaming
+            }
+        }
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+        if (tipo == "Serie") {
+            std::string nome, genero;
+            int ano, numeroTemporadas, totalEpisodios;
+            std::cin >> genero >> ano >> numeroTemporadas >> totalEpisodios;
+            std::getline(std::cin, nome);
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            Video* video;
+            video = new Video(nome, ano, genero, tipo, 0, numeroTemporadas, totalEpisodios);
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
+            if (totalEpisodios >= 2) {
+                streamingService.cadastrar_serie(video); // Cadastra a série no catálogo do serviço de streaming
+            }
+        }
 
-return 0;
+        if (tipo == "Nota") {
+            int id, nota;
+            std::cin >> id >> nota;
+
+            if (nota >= 0 && nota <= 10) {
+                streamingService.avaliacao(id, nota); // Avalia um vídeo do catálogo do serviço de streaming
+            }
+        }
+    }
+
+    streamingService.print_catalogo(); // Imprime o catálogo do serviço de streaming
+
+    return 0;
 }
