@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "Streaming.hpp"
 
 void Streaming::cadastrar_filme(Video *v) {
@@ -19,10 +18,8 @@ void Streaming::print_catalogo() const {
         std::cout << "Sem video cadastrado!" << std::endl;
     } else {
         std::cout << "Catalogo Streaming:" << std::endl;
-        int i = 0;
-        for (const auto* video : catalogo) {
-            video->print_info(i + 1);
-            i++;
+        for (std::vector<Video*>::const_iterator it = catalogo.begin(); it != catalogo.end(); it++) {
+            (*it)->print_info(it - catalogo.begin() + 1);
         }
     }
 }
