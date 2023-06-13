@@ -1,60 +1,62 @@
 #include "Streaming.hpp"
+
 #include <iostream>
-#include <list>
 #include <string>
-#include <vector>
 
-int main()
+using namespace std;
 
-{
-Streaming ss;
-string t;
+int main() {
+    Streaming streaming;
+    string comando;
 
-while (cin >> t) {
-if (t == "Filme")
+    while (cin >> comando) {
+        if (comando == "Filme") {
+            string nomeFilme, generoFilme;
+            int anoFilme, duracaoFilme;
+            cin >> generoFilme >> anoFilme >> duracaoFilme;
+            cin.ignore();
+            getline(cin, nomeFilme);
 
-{
-string n, g;
-int a, d;
-cin >> g >> a >> d;
-getline(cin, n);
+            Filme* f = new Filme(nomeFilme, anoFilme, generoFilme, duracaoFilme);
 
-Video *v;
-v = new Video(n, a, g, t, d, 0, 0);
-if (50 <= d)
+            if (duracaoFilme >= 50) {
+                streaming.cadastrar_video(f);
+            }
+            else {
+                cout << "Filme nao cadastrado. Duracao menor que 50 minutos." << endl;
+            }
+        }
+        else if (comando == "Serie") {
+            string nomeSerie, generoSerie;
+            int anoSerie, numeroTemporada, numeroEpisodios;
+            cin >> generoSerie >> anoSerie >> numeroTemporada >> numeroEpisodios;
+            cin.ignore();
+            getline(cin, nomeSerie);
 
-{
-ss.cadastrar_filme(v);
-}
-}
-if (t == "Serie") {
+            Serie* s = new Serie(nomeSerie, anoSerie, generoSerie, numeroTemporada, numeroEpisodios);
 
-string n;
-string g;
-int a, nt, te;
-cin >> g >> a >> nt >> te;
-getline(cin, n);
-Video *v;
-v = new Video(n, a, g, t, 0, nt, te);
-if (2 <= te) {
-{
-ss.cadastrar_serie(v);
-}
-}
-}
+            if (numeroEpisodios >= 2) {
+                streaming.cadastrar_video(s);
+            }
+            else {
+                cout << "Serie nao cadastrada. Numero de episodios menor que 2." << endl;
+            }
+        }
+        else if (comando == "Nota") {
+            int id, notaAvaliacao;
+            cin >> id >> notaAvaliacao;
 
-if (t == "Nota") {
-int i, n;
-cin >> i >> n;
+            if (notaAvaliacao >= 0 && notaAvaliacao <= 10) {
+                streaming.avaliacao(id, notaAvaliacao);
+            }
+        }
+        else if(comando == "Listar Catalogo"){
+            streaming.print_catalogo();
+        }
+        else {
+            cout << "Comando invalido!" << endl;
+        }
+    }
 
-if (n <= 10) {
-if (n >= 0) {
-ss.avaliacao(i, n);
-}
-}
-}
-}
-ss.print_catalogo();
-
-return 0;
+    return 0;
 }
